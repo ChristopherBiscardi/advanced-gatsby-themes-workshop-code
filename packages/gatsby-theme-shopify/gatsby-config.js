@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = options => {
   plugins: [
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -32,7 +32,8 @@ module.exports = {
         // List of collections you want to fetch.
         // Possible values are: 'shop' and 'content'.
         // Defaults to ['shop', 'content'].
-        includeCollections: ["shop"]
+        includeCollections: ["shop"],
+        ...options.sourceShopify
       }
     }
   ]
