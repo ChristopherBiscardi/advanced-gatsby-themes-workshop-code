@@ -3,7 +3,7 @@
 ## An advanced workshop
 
 🦋 hi there! My name is [Chris Biscardi](https://christopherbiscardi.com) and this is the
-source material for [Learn React Hooks](https://kentcdodds.com/workshops/hooks)!
+source material for [Composable Gatsby Themes](https://ti.to/egghead-live-online-events/composing-gatsby-themes-with-chris-biscardi-2019-10-23/discount/egh-early)!
 
 ## Pre-Workshop Instructions/Requirements
 
@@ -43,6 +43,7 @@ variable and how to fix it here for [windows][win-path] or
 ```shell
 git clone https://github.com/ChristopherBiscardi/advanced-gatsby-themes-workshop-code.git
 cd advanced-gatsby-themes-workshop-code
+yarn
 ```
 
 If you can't work it out on your own
