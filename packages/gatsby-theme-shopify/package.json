@@ -1,0 +1,22 @@
+{
+  "name": "gatsby-theme-shopify",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/core": "^10.0.21",
+    "@theme-ui/presets": "^0.2.44",
+    "theme-ui": "^0.2.44",
+    "isolated-theme-ui": "1.0.1",
+    "gatsby-image": "^2.2.29",
+    "gatsby-source-shopify": "^3.0.24",
+    "shopify-buy": "^2.8.0",
+    "gatsby-plugin-sharp": "^2.2.32",
+    "gatsby-transformer-sharp": "^2.2.23"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.16.5",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  }
+}

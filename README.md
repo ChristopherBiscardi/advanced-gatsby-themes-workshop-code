@@ -2,15 +2,15 @@
 
 ## Exercise 02: Creating our first theme
 
-Our first theme is gatsby-theme-marketing. These are the pages that our marketing team will control, whether through contractors or their own work. By putting these files into a separate theme we enable the marketing team to have autonomy over the pages that they control.
+Our next theme will be a shopify theme. This will be slightly more interesting than the marketing theme since the shopify theme uses additional plugins.
 
 ### Step 01: Create Folders
 
-Create a `packages/gatsby-theme-marketing` folder and initialize a new `package.json` in it.
+Create a `packages/gatsby-theme-shopify` folder and initialize a new `package.json` in it.
 
 ```shell
-mkdir -p packages/gatsby-theme-marketing
-cd packages/gatsby-theme-marketing
+mkdir -p packages/gatsby-theme-shopify
+cd packages/gatsby-theme-shopify
 yarn init -y
 ```
 
@@ -18,7 +18,7 @@ The resulting `package.json` will look like this. The name here is important.
 
 ```json
 {
-  "name": "gatsby-theme-marketing",
+  "name": "gatsby-theme-shopify",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT"
@@ -27,34 +27,30 @@ The resulting `package.json` will look like this. The name here is important.
 
 ### Step 02: Move files into the theme
 
-The following files need to be moved into `packages/gatsby-theme-marketing` from `www/src/pages/`.
+The following files need to be moved into `packages/gatsby-theme-shopify` from `www/src/pages/`. This moves our swag store into the theme.
 
 ```
-company.js
-index.js
-pricing.js
+swag.js
 ```
 
-That leaves us with a `packages/gatsby-theme-marketing` that looks like this:
+That leaves us with a `packages/gatsby-theme-shpoify` that looks like this:
 
 ```shell
-> tree gatsby-theme-marketing
+> tree gatsby-theme-shopify
 gatsby-theme-marketing
 ├── package.json
 └── src
     └── pages
-        ├── company.js
-        ├── index.js
-        └── pricing.js
+        └── swag.js
 ```
 
-Remember to remove `company.js`, `index.js`, and `pricing.js` from `www/src/pages`.
+Remember to remove `swag.js` from `www/src/pages`.
 
 ### Step 03: Use the theme
 
 We need to add our new theme to our site's `package.json` and the site's `gatsby-config.js`.
 
-In `www/package.json`, add `gatsby-theme-marketing` to the `dependencies` object.
+In `www/package.json`, add `gatsby-theme-shopify` to the `dependencies` object.
 
 ```json
 {
@@ -65,7 +61,7 @@ In `www/package.json`, add `gatsby-theme-marketing` to the `dependencies` object
   "license": "MIT",
   "dependencies": {
     ...
-    "gatsby-theme-marketing": "*",
+    "gatsby-theme-shopify": "*",
     ...
   },
 }
@@ -76,75 +72,16 @@ and in `www/gatsby-config.js` add the theme to the `plugins` array.
 ```js
 module.exports = {
   plugins: [
-    `gatsby-theme-marketing`,
+    `gatsby-theme-shopify`,
     ...
   ]
 };
 ```
 
-### Step 04: install and run
-
-Run `yarn` in the root of the repo to install the theme package into `www`, then run `yarn workspace www develop` to check to make sure everything works.
-
-```js
-yarn
-yarn workspace www develop
-```
-
-You should see this error.
-
-```
-yarn workspace www develop
-yarn workspace v1.19.1
-yarn run v1.19.1
-$ gatsby develop
-success open and validate gatsby-configs - 0.021s
-
- ERROR
-
-UNHANDLED REJECTION Unable to find plugin "gatsby-theme-marketing". Perhaps you need to install its package?
-
-
-
-  Error: Unable to find plugin "gatsby-theme-marketing". Perhaps you need to install its package?
-
-  - load.js:109 resolvePlugin
-    [advanced-gatsby-themes-workshop-code]/[gatsby]/dist/bootstrap/load-plugins/load.js:109:11
-
-  - load.js:153 processPlugin
-    [advanced-gatsby-themes-workshop-code]/[gatsby]/dist/bootstrap/load-plugins/load.js:153:20
-
-  - load.js:172 config.plugins.forEach.plugin
-    [advanced-gatsby-themes-workshop-code]/[gatsby]/dist/bootstrap/load-plugins/load.js:172:20
-
-  - Array.forEach
-
-  - load.js:171 module.exports
-    [advanced-gatsby-themes-workshop-code]/[gatsby]/dist/bootstrap/load-plugins/load.js:171:20
-
-  - index.js:55 module.exports
-    [advanced-gatsby-themes-workshop-code]/[gatsby]/dist/bootstrap/load-plugins/index.js:55:19
-
-  - index.js:167 module.exports
-    [advanced-gatsby-themes-workshop-code]/[gatsby]/dist/bootstrap/index.js:167:34
-
-
-not finished load plugins - 0.053s
-error Command failed with exit code 1.
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
-error Command failed.
-```
-
-This error helpfully suggests
-
-> Unable to find plugin "gatsby-theme-marketing". Perhaps you need to install its package?
-
-Except we just installed the package!
-
-What's happening is that the node.js require algorithm can't find our package. To find our package we can either use the default of `index.js` _or_ we can specify an already-existing file in the `main` field in our theme's `package.json`. We'll opt for the `index.js` file in case we ever want to export content from the theme.
+### Step 04: index.js
 
 ```shell
-touch packages/gatsby-theme-marketing/index.js
+touch packages/gatsby-theme-shopify/index.js
 ```
 
 inside of `index.js`, it is conventional to include a single comment in themes and gatsby plugins, signaling that this file is intentionally empty.
@@ -153,35 +90,39 @@ inside of `index.js`, it is conventional to include a single comment in themes a
 // boop
 ```
 
-### Step 04: moving components over
+### Step 05: moving components over
 
-If we add the `index.js` file and try to run `yarn workspace www develop` again, we see a new error. This is because we didn't copy over the `components` folder to our new theme.
-
-```
-ERROR #98123  WEBPACK
-
-Generating development JavaScript bundle failed
-
-Can't resolve '../components/header' in 'advanced-gatsby-themes-workshop-code/packages/gatsby-theme-marketing/src/pages'
-
-File: ../packages/gatsby-theme-marketing/src/pages/company.js
-```
-
-You can use this command or finder to copy the files over.
+We need to move the components over again like we did for the marketing theme. Since we already wrote this code we can copy/paste it from our marketing theme this time. Copy all of these files over from the marketing theme into the shopify theme. We'll keep all of this code the same across both themes so we could abstract it. For today we'll do some copy/paste since the two themes could be developed by two different people in different repos.
 
 ```shell
-cp -R www/src/components packages/gatsby-theme-marketing/src/
+packages/gatsby-theme-marketing
+├── gatsby-browser.js
+├── gatsby-ssr.js
+├── src
+│   ├── components
+│   │   ├── header.js
+│   │   ├── headings.js
+│   │   └── text.js
+│   ├── context.js
+│   └── theme.js
+└── wrap-root-element.js
 ```
 
-### Step 05: Theme dependencies
+Change the tokens in `theme.js` to use `funk` this time.
 
-Since we're talking about advanced theme creation and usage in this course, we're going to change the default tokens of the marketing theme as if this theme could be used by many other people. Since this theme is quite small, it is unlikely that it would be used much if we published it. The changes here will help us when we get to more complicated themes like the Blog theme later.
+```js
+import { funk } from "@theme-ui/presets";
 
-Our marketing theme depends directly on `theme-ui` for the `jsx` pragma, `gatsby` for some components, and `react`. `gatsby` and `react` can be set as `peerDependencies` since every Gatsby site tends to install them, while `theme-ui` will be a direct dependency of our site. `theme-ui`'s peerDeps include `@emotion/core` and `@mdx-js/react` so we'll leave them out. We'll also add `@theme-ui/presets` to make it easy to swap our theme. The `package.json` in `gatsby-theme-marketing` ends up looking like this.
+export default funk;
+```
+
+### Step 06: Theme dependencies
+
+We'll also use the same dependencies from our marketing theme.
 
 ```json
 {
-  "name": "gatsby-theme-marketing",
+  "name": "gatsby-theme-shopify",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -199,187 +140,178 @@ Our marketing theme depends directly on `theme-ui` for the `jsx` pragma, `gatsby
 
 Now that we have our dependencies set up we can run `yarn` in the root of our project again.
 
-### Step 06: Styling
+### Step 07: Using the custom pragma
 
-To change the default token set used by our theme, we'll copy the `gatsby-ssr.js`, `gatsby-browser.js`, and `wrap-root-element.js` from `www` into our theme.
+Now that we've set everything up, we need to replace any instance of `import { jsx } from "theme-ui";` with our custom pragma (`import { jsx } from "../context";`) in `packages/gatsby-theme-shopify/src/pages/swag.js` just like we did in the marketing theme. Note that we have some extra dependencies here. We'll deal with them in a second.
 
-Note that `wrap-root-element.js` references some global styles so we'll want to remove those and the corresponding `@emotion/core` import. Also change the `deep` import to `swiss`, which will be our marketing default theme. We're left with this.
-
-```js
-import React from "react";
-import { ThemeProvider } from "theme-ui";
-import { swiss } from "@theme-ui/presets";
-import * as H from "./src/components/headings";
-import * as Text from "./src/components/text";
-
-const components = {
-  ...H,
-  ...Text
-};
-
-export default ({ element }) => (
-  <ThemeProvider theme={swiss} components={components}>
-    {element}
-  </ThemeProvider>
-);
-```
-
-Now we can run `yarn workspace www develop` and... Our _entire site_ changes colors! oh no!
-
-This is an easy problem to fall into when developing themes for general consumption. We have a solution though: using our own React context.
-
-### Step 07: Bootstrapping our own context
-
-We need to replace the `jsx` pragma from `theme-ui` with our own. Luckily there's a package for that: [`isolated-theme-ui`](https://github.com/ChristopherBiscardi/gatsby-plugins/tree/master/packages/isolated-theme-ui).
-
-`isolated-theme-ui` depends on the same low-level packages `theme-ui` does, so we'll just add it to the dependencies for our theme.
-
-```json
-{
-  "name": "gatsby-theme-marketing",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@emotion/core": "^10.0.21",
-    "@theme-ui/presets": "^0.2.44",
-    "theme-ui": "^0.2.44",
-    "isolated-theme-ui": "1.0.1"
-  },
-  "peerDependencies": {
-    "gatsby": "^2.16.5",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
-  }
-}
-```
-
-We're going to bootstrap our own React context in `gatsby-theme-marketing/src/context.js`. Our context will support theme-ui tokens and MDX components (more on how to take advantage of the mdx pragma later).
+Don't forget to add the `Global`, `useContext`, `MyThemeContext` imports and usages if you want the background color to stick around on this page.
 
 ```js
 /** @jsx jsx */
-import React from "react";
-import { jsxPragma, mdxPragma } from "isolated-theme-ui";
-
-export const MyThemeContext = React.createContext({
-  theme: {},
-  components: {}
-});
-
-// our custom pragmas, bootstrapped with our context
-export const jsx = jsxPragma(MyThemeContext);
-export const mdx = mdxPragma(MyThemeContext);
-```
-
-`gatsby-theme-marketing/wrap-root-element` uses our custom context and becomes
-
-```js
-import React from "react";
-import { MyThemeContext } from "./src/context";
-
-import theme from "./src/theme";
-import * as H from "./src/components/headings";
-import * as Text from "./src/components/text";
-
-const components = {
-  ...H,
-  ...Text
-};
-
-export default ({ element }) => (
-  <MyThemeContext.Provider
-    value={{
-      theme,
-      components
-    }}
-  >
-    {element}
-  </MyThemeContext.Provider>
-);
-```
-
-We'll also move our token set into `gatsby-theme-marketing/src/theme.js`. This allows the user's site to shadow it later without changing the `wrapRootElement` logic.
-
-```js
-import { swiss } from "@theme-ui/presets";
-
-export default swiss;
-```
-
-### Step 08: Using the custom pragma
-
-Now that we've set everything up, we need to replace any instance of `import { jsx } from "theme-ui";` with our custom pragma (`import { jsx } from "../context";`)
-
-For example, `gatsby-theme-marketing/src/components/text.js`
-
-```js
-/** @jsx jsx */
-import { jsx } from "../context";
-import { Link as GatsbyLink } from "gatsby";
-
-export const p = props => (
-  <p
-    {...props}
-    sx={{ color: "text", fontFamily: "body", lineHeight: "body" }}
-  />
-);
-
-export const Link = props => (
-  <GatsbyLink
-    {...props}
-    sx={{
-      color: "primary",
-      "&:hover": {
-        color: "secondary"
-      }
-    }}
-  />
-);
-```
-
-### Step 09: Global Styles Bonus Round
-
-Remember when we removed the global styles from `wrapRootElement`? If we added them back, the styles would permanently apply based on which `wrapRootElement` in which theme "won". There are two solutions to this problem. We can add our global styles back on every page we control, or we can add global styles in `wrapPageElement` if we happen to know which URLs we control.
-
-The first solution (global styles per-page) looks like this on the `company.js` page consuming our context via React hooks. This approach will cause these styles to mount and unmount when our page is rendered, which in this case is what we want because otherwise we'd be stomping on the user's styles. Remember that the user can always override the tokens to make this look more regular between pages and in the meantime when they install our theme nothing on their application (or our theme) will break.
-
-```js
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { MyThemeContext, jsx } from "../context";
+import { graphql } from "gatsby";
 import { Global } from "@emotion/core";
-import { MyThemeContext } from "../context";
 import Header from "../components/header";
+import Img from "gatsby-image";
+import Client from "shopify-buy";
+import { navigate } from "@reach/router";
 import * as H from "../components/headings";
 import * as Text from "../components/text";
 
-export default props => {
+const client = Client.buildClient({
+  domain: "corgico-dev.myshopify.com",
+  storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN
+});
+
+async function buyCorgis(shopifyId) {
+  const checkout = await client.checkout.create();
+  await client.checkout.addLineItems(checkout.id, [
+    {
+      variantId: shopifyId,
+      quantity: 1
+    }
+  ]);
+  // console.log(checkout.webUrl)
+  navigate(checkout.webUrl);
+}
+
+export default ({ data, ...props }) => {
   const { theme } = useContext(MyThemeContext);
+
   return (
     <div>
       <Global styles={{ body: { backgroundColor: theme.colors.background } }} />
-      <Header />
-      <H.h1>Company Page</H.h1>
-      <Text.p>about us and stuff</Text.p>
-      <H.h2>Employees</H.h2>
-      <Text.p>hopefully they don't leave</Text.p>
-      <H.h2>Investors</H.h2>
-      <Text.p>Thanks for money yo</Text.p>
+      ...
     </div>
   );
 };
+
+export const query = graphql`...`;
 ```
 
-### Step 10: Usage in our site
+### Step 08: Other dependencies
 
-Now we have a separated Gatsby theme (`gatsby-theme-marketing`) that can be published to npm and consumed by anyone. The theme isolates it's styles from the consuming application when installed using a custom React context, preventing unwanted or unexpected clashes that can lead to installation failures.
+Up until this point we've mostly copied what we did with the marketing theme. We now have some additional dependencies to bring over into the `package.json` in the shopify theme (and also a plugin).
 
-Typically the desire is to have the entire site in one token set though, so let's shadow the marketing tokens in our site. Remember that all the consuming site has to do at this point is to install the theme package and use it in gatsby-config.js
+We rely on `reach/router`, which comes with Gatsby so we won't worry about it, and `shopify-buy` in our swag store. We also depend on the `gatsby-source-shopify` plugin and by extension, the set of sharp plugins that support the corgi images. Add the following dependencies to the shopify theme's `package.json` `dependencies`.
 
-To change the tokens to match that of our site, create a new file at `www/src/gatsby-theme-marketing/theme.js` and include the following contents. The rest of our site uses the `deep` token set, so we use that.
+```json
+{
+  "gatsby-image": "^2.2.29",
+  "gatsby-source-shopify": "^3.0.24",
+  "shopify-buy": "^2.8.0",
+  "gatsby-plugin-sharp": "^2.2.32",
+  "gatsby-transformer-sharp": "^2.2.23"
+}
+```
+
+We can now *remove* the `shopify-buy` and `gatsby-source-shopify` plugins from our `www` package.json.
+
+### Step 09: moving the plugins
+
+Next we need to move the source plugin over from the site into our theme. *copy* the sharp plugins and *move* the shopify plugin, resulting in the following `gatsby-config.js` file in `packages/gatsby-theme-shopify/gatsby-config.js`.
+
+```js
+module.exports = {
+  plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: "gatsby-source-shopify",
+      options: {
+        // The domain name of your Shopify shop. This is required.
+        // Example: 'gatsby-source-shopify-test-shop' if your Shopify address is
+        // 'gatsby-source-shopify-test-shop.myshopify.com'.
+        shopName: "corgico-dev",
+
+        // An API access token to your Shopify shop. This is required.
+        // You can generate an access token in the "Manage private apps" section
+        // of your shop's Apps settings. In the Storefront API section, be sure
+        // to select "Allow this app to access your storefront data using the
+        // Storefront API".
+        // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+        accessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+
+        // Set verbose to true to display a verbose output on `npm run develop`
+        // or `npm run build`. This prints which nodes are being fetched and how
+        // much time was required to fetch and process the data.
+        // Defaults to true.
+        verbose: true,
+
+        // Number of records to fetch on each request when building the cache
+        // at startup. If your application encounters timeout errors during
+        // startup, try decreasing this number.
+        paginationSize: 250,
+
+        // List of collections you want to fetch.
+        // Possible values are: 'shop' and 'content'.
+        // Defaults to ['shop', 'content'].
+        includeCollections: ["shop"]
+      }
+    }
+  ]
+};
+```
+
+The `www/gatsby-config.js` is now one plugin shorter than it used to be.
+
+### Step 10: Theme Options
+
+`gatsby-source-shopify` takes a set of options but the way we have the `gatsby-config` set up doesn't allow us to pass any in. We can change that by making the `gatsby-config` a function export, which only works in themes. We end up with the following (comments removed). Our theme now takes a `sourceShopify` option that can be used to customize any value in the shopify source options. Using a spread allows us to upgrade with the underlying plugin: We won't need to bump the version of our theme if the shopify source plugin allows a new option, we can let users handle it.
+
+```js
+module.exports = options => {
+  plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: "gatsby-source-shopify",
+      options: {
+        shopName: "corgico-dev",
+        accessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+        verbose: true,
+        paginationSize: 250,
+        includeCollections: ["shop"],
+        ...options.sourceShopify
+      }
+    }
+  ]
+};
+```
+
+### Step 11: hardcoded domain
+
+The domain of our store is hardcoded in `swag.js`
+
+```js
+const client = Client.buildClient({
+  domain: "corgico-dev.myshopify.com",
+  storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN
+});
+```
+
+We'll change this to use an environment variable.
+
+```js
+const client = Client.buildClient({
+  domain: process.env.GATSBY_SHOPIFY_DOMAIN,
+  storefrontAccessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN
+});
+```
+
+Remember to add this value to your `.env.development`.
+
+The `GATSBY` prefix is special, it takes environment variables and injects them into the webpack bundle without us having to do extra work. Since this value can be easily configured, this is great. Depending on how we accessed this value there are a number of other options we can choose including [StaticQuery and Custom Configuration Nodes](https://www.christopherbiscardi.com/post/applying-theme-options-using-custom-configuration-nodes/), Manual usage of [Webpack's DefinePlugin](https://www.christopherbiscardi.com/post/applying-theme-options-using-webpacks-defineplugin/), and [React Context](https://www.christopherbiscardi.com/post/applying-theme-options-using-react-context/). There's a lot of flexibility in decision making here.
+
+### Step 12: Usage in our site
+
+To change the tokens to match that of our site, create a new file at `www/src/gatsby-theme-shopify/theme.js` and include the following contents. The rest of our site uses the `deep` token set, so we use that.
 
 ```js
 import { deep } from "@theme-ui/presets";
 
-export default deep
+export default deep;
 ```
 
 That's it. The theme was installed without affecting the current site and we can also override the token set using a single file.

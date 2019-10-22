@@ -1,6 +1,8 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { useContext } from 'react';
+import { MyThemeContext, jsx } from "../context";
 import { graphql } from "gatsby";
+import { Global } from "@emotion/core";
 import Header from "../components/header";
 import Img from "gatsby-image";
 import Client from "shopify-buy";
@@ -26,8 +28,11 @@ async function buyCorgis(shopifyId) {
 }
 
 export default ({ data, ...props }) => {
+  const { theme } = useContext(MyThemeContext);
+
   return (
     <div>
+      <Global styles={{ body: { backgroundColor: theme.colors.background } }} />
       <Header />
       <ul sx={{ listStyleType: "none", margin: 0, padding: 0 }}>
         {data.allShopifyProduct.nodes.map(
@@ -50,7 +55,7 @@ export default ({ data, ...props }) => {
                     <button onClick={() => buyCorgis(variant.shopifyId)}>
                       Buy Now!
                     </button>
-                    <div style={{  width: (variant.price/2.00) * 40  }}>
+                    <div style={{ width: (variant.price / 2.0) * 40 }}>
                       <Img
                         fluid={variant.image.localFile.childImageSharp.fluid}
                       />
