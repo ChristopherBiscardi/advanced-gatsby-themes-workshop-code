@@ -1,7 +1,6 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import Header from "../components/header";
-import * as H from "../components/headings";
 import * as Text from "../components/text";
 
 export default props => (

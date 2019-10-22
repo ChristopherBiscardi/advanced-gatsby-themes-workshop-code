@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import * as H from "../components/headings";
 import * as Text from "../components/text";
 

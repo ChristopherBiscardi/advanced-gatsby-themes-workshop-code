@@ -1,4 +1,5 @@
 /** @jsx jsx */
+/* eslint jsx-a11y/heading-has-content: 0 */
 import { jsx } from "theme-ui";
 
 export const h1 = props => (

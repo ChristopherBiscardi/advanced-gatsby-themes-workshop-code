@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import Header from "../components/header";
 import * as Text from "../components/text";
 
