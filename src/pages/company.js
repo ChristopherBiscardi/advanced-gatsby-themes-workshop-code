@@ -1,14 +1,16 @@
 import React from "react";
 import Header from "../components/header";
+import * as H from "../components/headings";
+import * as Text from "../components/text";
 
 export default props => (
   <div>
     <Header />
-    <h1>Company Page</h1>
-    <p>about us and stuff</p>
-    <h2>Employees</h2>
-    <p>hopefully they don't leave</p>
-    <h2>Investors</h2>
-    <p>Thanks for money yo</p>
+    <H.h1>Company Page</H.h1>
+    <Text.p>about us and stuff</Text.p>
+    <H.h2>Employees</H.h2>
+    <Text.p>hopefully they don't leave</Text.p>
+    <H.h2>Investors</H.h2>
+    <Text.p>Thanks for money yo</Text.p>
   </div>
 );

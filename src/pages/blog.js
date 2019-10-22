@@ -1,20 +1,31 @@
-import React from "react";
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import { graphql, Link } from "gatsby";
 import Header from "../components/header";
+import * as Text from "../components/text";
 
 export default props => (
   <div>
     <Header />
     {props.data.allWordpressPost.nodes.map(node => (
-      <div>
-        <Link to={`/blog/${node.slug}`}>
-          <strong dangerouslySetInnerHTML={{
+      <div key={node.id}>
+        <Text.Link to={`/blog/${node.slug}`}>
+          <strong
+            dangerouslySetInnerHTML={{
               __html: node.title
-          }}/>
-        </Link>
-        <p dangerouslySetInnerHTML={{
+            }}
+          />
+        </Text.Link>
+        <p
+          dangerouslySetInnerHTML={{
             __html: node.excerpt
-        }}/>
+          }}
+          sx={{
+            color: "text",
+            fontFamily: "body",
+            lineHeight: "body"
+          }}
+        />
       </div>
     ))}
   </div>
@@ -22,12 +33,13 @@ export default props => (
 
 export const query = graphql`
   query AllProductBlogsPage {
-        allWordpressPost {
-            nodes {
-                title
-                slug
-                excerpt
-            }
-        }
+    allWordpressPost {
+      nodes {
+        id
+        title
+        slug
+        excerpt
+      }
+    }
   }
 `;

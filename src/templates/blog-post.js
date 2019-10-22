@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import Header from "../components/header";
+import * as H from "../components/headings";
 
 export default ({ data }) => (
-  <div sx={{ background: "background" }}>
+  <div>
     <Header />
-    <h1>{data.mdx.frontmatter.title}</h1>
+    <H.h1>{data.mdx.frontmatter.title}</H.h1>
     <MDXRenderer>{data.mdx.body}</MDXRenderer>
   </div>
 );

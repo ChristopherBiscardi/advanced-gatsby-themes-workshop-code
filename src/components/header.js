@@ -45,9 +45,7 @@ export default props => (
           }
         }}
       >
-        <li>
-          <NavItem to="/app">Log in</NavItem>
-        </li>
+        <NavItem to="/app">Log in</NavItem>
       </ul>
     </nav>
   </header>
