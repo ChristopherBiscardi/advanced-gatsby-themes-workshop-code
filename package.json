@@ -1,31 +1,11 @@
 {
-  "name": "just-a-gatsby-site",
+  "name": "advanced-gatsby-themes-workshop-code",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "christopherbiscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
+  "repository": "git@github.com:ChristopherBiscardi/advanced-gatsby-themes-workshop-code.git",
+  "author": "ChristopherBiscardi <chris@christopherbiscardi.com>",
   "license": "MIT",
-  "dependencies": {
-    "@emotion/core": "^10.0.21",
-    "@mdx-js/mdx": "^1.5.1",
-    "@mdx-js/react": "^1.5.1",
-    "@theme-ui/presets": "^0.2.44",
-    "gatsby": "^2.16.5",
-    "gatsby-image": "^2.2.29",
-    "gatsby-plugin-create-client-paths": "^2.1.15",
-    "gatsby-plugin-mdx": "^1.0.52",
-    "gatsby-plugin-sharp": "^2.2.32",
-    "gatsby-source-filesystem": "^2.1.33",
-    "gatsby-source-shopify": "^3.0.24",
-    "gatsby-source-wordpress": "^3.1.43",
-    "gatsby-transformer-sharp": "^2.2.23",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "shopify-buy": "^2.8.0",
-    "theme-ui": "^0.2.44"
-  },
-  "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "clean": "gatsby clean"
-  }
+  "private": true,
+  "workspaces": ["packages/*", "www"]
 }
+
