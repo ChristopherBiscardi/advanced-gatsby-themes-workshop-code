@@ -367,3 +367,19 @@ export default props => {
   );
 };
 ```
+
+### Step 10: Usage in our site
+
+Now we have a separated Gatsby theme (`gatsby-theme-marketing`) that can be published to npm and consumed by anyone. The theme isolates it's styles from the consuming application when installed using a custom React context, preventing unwanted or unexpected clashes that can lead to installation failures.
+
+Typically the desire is to have the entire site in one token set though, so let's shadow the marketing tokens in our site. Remember that all the consuming site has to do at this point is to install the theme package and use it in gatsby-config.js
+
+To change the tokens to match that of our site, create a new file at `www/src/gatsby-theme-marketing/theme.js` and include the following contents. The rest of our site uses the `deep` token set, so we use that.
+
+```js
+import { deep } from "@theme-ui/presets";
+
+export default deep
+```
+
+That's it. The theme was installed without affecting the current site and we can also override the token set using a single file.
