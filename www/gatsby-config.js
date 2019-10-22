@@ -4,6 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   plugins: [
+    `gatsby-theme-marketing`,
     `gatsby-plugin-mdx`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,

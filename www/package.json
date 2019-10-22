@@ -17,6 +17,7 @@
     "gatsby-source-filesystem": "^2.1.33",
     "gatsby-source-shopify": "^3.0.24",
     "gatsby-source-wordpress": "^3.1.43",
+    "gatsby-theme-marketing": "*",
     "gatsby-transformer-sharp": "^2.2.23",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
