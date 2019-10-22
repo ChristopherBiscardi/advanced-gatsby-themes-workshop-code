@@ -40,12 +40,6 @@ variable and how to fix it here for [windows][win-path] or
 
 ## Setup
 
-If you'd rather be able to work through the workshop on your own computer, then
-follow the following instructions.
-
-After you've made sure to have the correct things (and versions) installed, you
-should be able to just run a few commands to get set up:
-
 ```shell
 git clone https://github.com/ChristopherBiscardi/advanced-gatsby-themes-workshop-code.git
 cd advanced-gatsby-themes-workshop-code
