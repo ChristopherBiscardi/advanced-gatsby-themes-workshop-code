@@ -70,7 +70,7 @@ interface BlogPost @nodeinterface {
     id: ID!
     title: String!
     slug: String!
-    excerpt
+    excerpt: String
     content: String!
 }
 ```
