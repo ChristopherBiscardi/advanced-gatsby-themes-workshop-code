@@ -2,17 +2,21 @@ const path = require(`path`);
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
-  const blogPostTemplate = path.resolve(`src/templates/blog-post.js`);
+  const wordPressPostTemplate = require.resolve(
+    `./src/templates/wordpress-blog-post.js`
+  );
   // Query for Mdx nodes to use in creating pages.
   return graphql(
     `
-      query loadPagesQuery {
-        allMdx {
+      query loadProductBlogsQuery {
+        allWordpressPost {
           nodes {
             id
-            frontmatter {
-              slug
-            }
+            date
+            title
+            slug
+            content
+            excerpt
           }
         }
       }
@@ -22,11 +26,10 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors;
     }
 
-    // Create blog post pages.
-    result.data.allMdx.nodes.forEach(node => {
+    result.data.allWordpressPost.nodes.forEach(node => {
       createPage({
-        path: `/dev-blog/${node.frontmatter.slug}`,
-        component: blogPostTemplate,
+        path: `/blog/${node.slug}`,
+        component: wordPressPostTemplate,
         context: {
           id: node.id
         }

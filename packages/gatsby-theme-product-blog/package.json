@@ -1,0 +1,16 @@
+{
+  "name": "gatsby-theme-product-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@theme-ui/presets": "^0.2.44",
+    "theme-ui": "^0.2.44",
+    "gatsby-source-wordpress": "^3.1.43"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.16.5",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  }
+}
