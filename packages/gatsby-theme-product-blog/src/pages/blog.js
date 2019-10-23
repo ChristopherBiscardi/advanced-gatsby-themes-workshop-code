@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useContext } from 'react'
+import { useContext } from "react";
 import { MyThemeContext, jsx } from "../context";
 import { graphql } from "gatsby";
 import { Global } from "@emotion/core";
@@ -14,7 +14,7 @@ export default props => {
       <Global styles={{ body: { backgroundColor: theme.colors.background } }} />
 
       <Header />
-      {props.data.allWordpressPost.nodes.map(node => (
+      {props.data.allBlogPost.nodes.map(node => (
         <div key={node.id}>
           <Text.Link to={`/blog/${node.slug}`}>
             <strong
@@ -41,7 +41,7 @@ export default props => {
 
 export const query = graphql`
   query AllProductBlogsPage {
-    allWordpressPost {
+    allBlogPost {
       nodes {
         id
         title
