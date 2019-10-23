@@ -8,18 +8,16 @@ import * as H from "../components/headings";
 export default ({ data }) => (
   <div>
     <Header />
-    <H.h1>{data.mdx.frontmatter.title}</H.h1>
-    <MDXRenderer>{data.mdx.body}</MDXRenderer>
+    <H.h1>{data.blogPost.title}</H.h1>
+    <MDXRenderer>{data.blogPost.content}</MDXRenderer>
   </div>
 );
 
 export const query = graphql`
   query BlogPostQuery($id: String!) {
-    mdx(id: { eq: $id }) {
-      frontmatter {
-        title
-      }
-      body
+    blogPost(id: { eq: $id }) {
+      title
+      content
     }
   }
 `;

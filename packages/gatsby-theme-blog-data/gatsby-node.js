@@ -6,5 +6,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String!
       excerpt: String
       content: String!
+      collection: String
     }`);
 };

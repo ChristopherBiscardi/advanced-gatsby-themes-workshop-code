@@ -41,7 +41,7 @@ export default props => {
 
 export const query = graphql`
   query AllProductBlogsPage {
-    allBlogPost {
+    allBlogPost(filter: { collection: { eq: "product" } }) {
       nodes {
         id
         title
