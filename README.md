@@ -1,6 +1,6 @@
 # Composing Gatsby Themes
 
-## Exercise 02: Creating our first theme
+## Exercise 03: Composing Gatsby Themes
 
 Our next theme will be a shopify theme. This will be slightly more interesting than the marketing theme since the shopify theme uses additional plugins.
 
