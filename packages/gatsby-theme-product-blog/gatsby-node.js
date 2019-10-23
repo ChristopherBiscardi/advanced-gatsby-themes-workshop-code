@@ -1,4 +1,3 @@
-const path = require(`path`);
 const crypto = require("crypto");
 
 exports.createSchemaCustomization = ({ actions }) => {
@@ -6,10 +5,10 @@ exports.createSchemaCustomization = ({ actions }) => {
   createTypes(`
     type BlogPostWordPress implements Node & BlogPost
       @childOf(types: ["wordpress__POST"]) {
-      id: ID! 
-      title: String! 
-      slug: String! 
-      excerpt: String 
+      id: ID!
+      title: String!
+      slug: String!
+      excerpt: String
       content: String!
     }
   `);
