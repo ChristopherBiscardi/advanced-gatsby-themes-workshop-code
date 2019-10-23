@@ -193,8 +193,6 @@ For `www/gatsby-node.js` it is easier to copy the entire file into the theme, th
 `packages/gatsby-theme-product-blog/gatsby-node.js` should look like this.
 
 ```js
-const path = require(`path`);
-
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   const wordPressPostTemplate = require.resolve(
