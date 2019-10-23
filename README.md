@@ -84,7 +84,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     id: ID!
     title: String!
     slug: String!
-    excerpt
+    excerpt: String
     content: String!
   }`);
 };
