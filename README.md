@@ -261,7 +261,7 @@ The `www/gatsby-config.js` is now one plugin shorter than it used to be.
 `gatsby-source-shopify` takes a set of options but the way we have the `gatsby-config` set up doesn't allow us to pass any in. We can change that by making the `gatsby-config` a function export, which only works in themes. We end up with the following (comments removed). Our theme now takes a `sourceShopify` option that can be used to customize any value in the shopify source options. Using a spread allows us to upgrade with the underlying plugin: We won't need to bump the version of our theme if the shopify source plugin allows a new option, we can let users handle it.
 
 ```js
-module.exports = options => {
+module.exports = options => ({
   plugins: [
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -277,7 +277,7 @@ module.exports = options => {
       }
     }
   ]
-};
+});
 ```
 
 ### Step 11: hardcoded domain
